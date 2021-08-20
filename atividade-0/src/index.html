@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividade 0 - CG</title>
+
+    <style></style>
+
+    <script type="module" src="threeJSFundamentals.js"></script>
     <script src="main.js"></script>
     <script src="matrix.js"></script>
 
@@ -37,7 +41,7 @@
                 </p>
 
                 <input type="number" name="input-range" id="int-range">
-                <button id="counter-odds-btn" submit onClick="countOddsNumbersFromArray()">Get result</button>
+                <button id="counter-odds-btn" onClick="countOddsNumbersFromArray()">Get result</button>
             </li>
 
             <li>
@@ -64,7 +68,39 @@
                 <button id="test-vector" onClick="calculateDotProduct()">Matrix test</button>
             </li>
         </ol>
+    </div>
 
+    <div>
+        <h2>Problemas Three.JS</h2>
+
+        <ol>
+            <li>
+                <p>
+                    Escreva um programa que desenhe um cubo 
+                    estático na janela do browser.
+                </p>
+                
+                <canvas id="c"></canvas>
+            </li>
+
+            <li>
+                <p>
+                    Escreva um programa que desenhe um cubo 
+                    sendo rotacionado em tempo real na janela do browser.
+                </p>
+                
+                <canvas id="living-cube-rotaion"></canvas>
+            </li>
+
+            <li>
+                Escreva um programa que desenhe três cubos estáticos 
+                na tela do browser, cada um com uma
+                aparência (i.e. material) distinta.
+
+                <canvas id="multiple-cubes-rotation"></canvas>
+
+            </li>
+        </ol>
     </div>
 </body>
 </html>

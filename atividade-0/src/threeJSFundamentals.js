@@ -2,22 +2,33 @@
 
 import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/build/three.module.js';
 
-// function render(time, cubes){
-//     time *= 0.001;
-
-//     cubes.forEatch((cube, ndx) => {
-//         const speed = 1 + ndx *.1;
-//         const rotation = time * speed;
-//         cube.rotation.x = rotation;
-//         cube.rotation.y = rotation;
-//     });
-
-//     rendererMultipleCubes.render(scene, camera);
-    
-//     requestAnimationFrame(render);
-// }
-
 function main(){
+
+    function multipleRender(time){
+        time *= 0.001;
+
+        cubes.forEach((cube, index) => {
+            const speed = 1 + index *.1;
+            const rotation = time * speed;
+            cube.rotation.x = rotation;
+            cube.rotation.y = rotation;
+        });
+
+        rendererMultipleCubes.render(multCubesScene, camera);
+        
+        requestAnimationFrame(multipleRender);
+    }
+
+    function render(time){
+        time *= 0.001;
+
+        cube.rotation.x = time;
+        cube.rotation.y = time;
+
+        renderer3DCube.render(scene, camera);
+        
+        requestAnimationFrame(render);
+    }
 
     function makeInstance(geometry, color, x_position){
         const material = new THREE.MeshPhongMaterial({color});
@@ -32,11 +43,11 @@ function main(){
 
     const canvas = document.querySelector('#c'); // Static cube
     const livingCubeRotation = document.querySelector('#living-cube-rotaion');
-    // const multipleCubes = document.querySelector('#multiple-cubes-rotation');
+    const multipleCubes = document.querySelector('#multiple-cubes-rotation');
 
     const renderer = new THREE.WebGLRenderer({canvas});
     const renderer3DCube = new THREE.WebGLRenderer({canvas: livingCubeRotation});
-    // const rendererMultipleCubes = new THREE.WebGLRenderer({canvas: multipleCubes});
+    const rendererMultipleCubes = new THREE.WebGLRenderer({canvas: multipleCubes});
 
     const fov = 75;
     const aspect = 2;
@@ -71,26 +82,25 @@ function main(){
     const color = 0xFFFFFF;
     const intensity = 1;
     const light = new THREE.DirectionalLight(color, intensity);
+    const light2 = new THREE.DirectionalLight(color, intensity);
     light.position.set(-1, 2, 4);
+    light2.position.set(-1, 2, 4);
     
+    // scene for single cube
     scene.add(cube);
     scene.add(light);
+
+    multCubesScene.add(light2);
     
     renderer.render(scene, camera);
     
-    // Creating animation
-    function render(time){
-        time *= 0.001;
+    rendererMultipleCubes.render(multCubesScene, camera)
 
-        cube.rotation.x = time;
-        cube.rotation.y = time;
-
-        renderer3DCube.render(scene, camera);
-        
-        requestAnimationFrame(render);
-    }
-
+    // Single cube animation
     requestAnimationFrame(render);
+    
+    // Multiple cubes animation
+    requestAnimationFrame(multipleRender);    
 }
 
 main();

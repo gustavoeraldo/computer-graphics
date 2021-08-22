@@ -29,7 +29,7 @@ function countOddsNumbersFromArray() {
     console.log(array);
 
     const numberOfOdds = array.filter((number) => number % 2 === 0).length;
-    console.log(numberOfOdds);
+    // console.log(`Number of Odds in array: ${numberOfOdds}`);
 }
 
 /* Functions for question 3 */

@@ -13,7 +13,7 @@
     <script src="matrix.js"></script>
 
 </head>
-<body>
+<body onload="draw();">
     <header>
         <h2>Atividade 0 - CG</h2>
         <p>Aluno: Gustavo Eraldo</p>
@@ -74,7 +74,9 @@
                     Crie desenhos diretamente em um elemento canvas de uma 
                     página HTML, em tempo de execução, utilizando JavaScript.
                 </p>
-                <canvas>Draw something</canvas>
+                <canvas id="free-draw" width="200" height="150">Draw something</canvas>
+                <canvas id="myCanvas" width="200" height="150" style="border:1px solid #d3d3d3;">
+                    Your browser does not support the HTML canvas tag.</canvas>
             </li>
         </ol>
     </div>

@@ -48,7 +48,7 @@ class Matrix {
         this.v3.x = aux_z;
         this.v3.y = aux_v2_z;
         
-        console.log(this.v1, this.v2, this.v3);
+        // console.log(this.v1, this.v2, this.v3);
 
         return;
     }
@@ -71,13 +71,14 @@ function calculateDotProduct(vector1, vector2){ // Produto escalar
 function calculateCrossVectorMatrix(vector, matrix){ // Vector[1:3] x Matriz[3:3]
     matrix.transposeMatrix();
 
-    console.log(matrix.v1);
+    // console.log(matrix.v1);
     const x1_component = calculateDotProduct(vector, matrix.v1);
     const x2_component = calculateDotProduct(vector, matrix.v2);
     const x3_component = calculateDotProduct(vector, matrix.v3);
 
     const productResult = new Vector (x1_component, x2_component, x3_component);
-    console.log({productResult});
+    // console.log({productResult});
+    
     return productResult;
 }
 
@@ -111,15 +112,52 @@ const vector4 = new Vector(3, 8, 5);
 const vector5 = new Vector(5, 1, 6);
 const vector6 = new Vector(3, 7, 2);
 
-// const crossProductResult = calculateCrossProduct(vector1, vector2);
-// console.log(crossProductResult);
+// Cross Product example
+console.log(`Cross Product input:
+    v1 = (${vector1.x}, ${vector1.y}, ${vector1.z})
+    v2 = (${vector2.x}, ${vector2.y}, ${vector2.z})`)
+const crossProductResult = calculateCrossProduct(vector1, vector2);
+console.log({crossProductResult});
+
+// Dot Product example
+console.log(`Dot Product input:
+    v1 = (${vector1.x}, ${vector1.y}, ${vector1.z})
+    v2 = (${vector2.x}, ${vector2.y}, ${vector2.z})`)
+const dotProductResult = calculateDotProduct(vector1, vector2);
+console.log({ dotProductResult });
+
+// Vector & Matrix product
+const matrix0 = new Matrix(vector1, vector2, vector3);
+
+console.log(`Vector & Matrix cross product input:
+    v = (${vector1.x}, ${vector1.y}, ${vector1.z})
+    m = |${matrix0.v1.x}, ${matrix0.v1.y}, ${matrix0.v1.z}|
+        |${matrix0.v2.x}, ${matrix0.v2.y}, ${matrix0.v2.z}|
+        |${matrix0.v3.x}, ${matrix0.v3.y}, ${matrix0.v3.z}|`)
+const crossVectorMatrixProduct = calculateCrossVectorMatrix(vector4, matrix0);
+console.log({ crossVectorMatrixProduct });
+
 
 const matrix1 = new Matrix(vector1, vector2, vector3);
 const matrix2 = new Matrix(vector4, vector5, vector6);
 
+// Matrix determinant example
 matrix1.calculateMatrixDeterminant();
-console.log(matrix1);
+console.log({ matrix1 });
 
 const vectorTest = new Vector(1, 2, 3);
-// const matrixResult = calculateCrossMatrixProduct(matrix1, matrix2);
-const matrixResult2 = calculateCrossVectorMatrix(vectorTest, matrix1);
+// const matrixResult2 = calculateCrossVectorMatrix(vectorTest, matrix1);
+
+// Cross matrix product example
+console.log(`Matrix & Matrix cross product input:
+    m1 = |${matrix1.v1.x}, ${matrix1.v1.y}, ${matrix1.v1.z}|
+         |${matrix1.v2.x}, ${matrix1.v2.y}, ${matrix1.v2.z}|
+         |${matrix1.v3.x}, ${matrix1.v3.y}, ${matrix1.v3.z}|
+    
+    m2 = |${matrix2.v1.x}, ${matrix2.v1.y}, ${matrix2.v1.z}|
+         |${matrix2.v2.x}, ${matrix2.v2.y}, ${matrix2.v2.z}|
+         |${matrix2.v3.x}, ${matrix2.v3.y}, ${matrix2.v3.z}| 
+    `)
+
+const crossMatrixResult = calculateCrossMatrixProduct(matrix1, matrix2);
+console.log({ crossMatrixResult });

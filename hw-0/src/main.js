@@ -4,6 +4,7 @@ const helloButton = document.querySelector('#hello-world-btn');
 const maxIntInput = document.querySelector('#int-range');
 const counterOddsButton = document.getElementById('counter-odds-btn');
 const quickSortButton = document.getElementById('quick-sort-btn');
+
 let array = [];
 
 function clickHelloButton(){ 
@@ -20,6 +21,7 @@ function generateArrayOfRandomNumbers(){
             Math.floor(maxInt * Math.random() + 1)
         );
     }
+
     return numbersArray
 }
 
@@ -41,7 +43,7 @@ function swap(array, i, j){
     array[j] = aux;
 }
 
-function partion(array, startIndex, endIndex){
+function partition(array, startIndex, endIndex){
     const pivot = array[startIndex];
 
     let i = startIndex - 1;
@@ -66,7 +68,7 @@ function partion(array, startIndex, endIndex){
 
 function quickSort(array, startIndex, endIndex){
     if (startIndex < endIndex){
-        let breakPoint = partion(array, startIndex, endIndex);
+        let breakPoint = partition(array, startIndex, endIndex);
         quickSort(array, startIndex, breakPoint);
         quickSort(array, breakPoint + 1, endIndex);
     }
@@ -78,12 +80,27 @@ function applyQuickSort(){
     console.log({quick_sort: array});
 }
 
-helloButton.addEventListener('click', clickHelloButton); // Question 1
-counterOddsButton.addEventListener('click', countOddsNumbersFromArray); // Question 2
-quickSortButton.addEventListener('click', applyQuickSort); // Question 3
+helloButton.addEventListener('click', clickHelloButton); // Related to Question 1
+counterOddsButton.addEventListener('click', countOddsNumbersFromArray); // Related to Question 2
+quickSortButton.addEventListener('click', applyQuickSort); // Related to Question 3
 
+// Question 5
+function draw() {
+    const c = document.getElementById("myCanvas");
+    const ctx = c.getContext("2d");
+    ctx.beginPath();
+    ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // external circle
+    ctx.moveTo(110, 75);
+    ctx.arc(75, 75, 35, 0, Math.PI, false);  // mouth (clockwise)
+    ctx.moveTo(65, 65);
+    ctx.arc(60, 65, 5, 0, Math.PI * 2, true);  // Left eye 
+    ctx.moveTo(95, 65);
+    ctx.arc(90, 65, 5, 0, Math.PI * 2, true);  // Right eye
+    ctx.stroke();
 
-/* 
-5 - Crie desenhos diretamente em um elemento <canvas> de uma página HTML, em tempo de
-execução, utilizando JavaScript.
-*/
+    // Testing
+    const canvas = document.querySelector('#free-draw');
+    const box = canvas.getContext('2d');
+    box.fillStyle = 'blue';
+    box.fillRect(10, 10, 150, 100);
+}
